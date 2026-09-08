@@ -646,7 +646,11 @@
   }
   function fmtClockTime(iso){
     var d = new Date(iso);
-    return d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+    var now = new Date();
+    var time = d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+    var sameDay = d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth() && d.getDate()===now.getDate();
+    if(sameDay) return time;
+    return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})+' '+time;
   }
   function fmtDateShort(isoDateStr){
     var d = new Date(isoDateStr+"T00:00:00");
