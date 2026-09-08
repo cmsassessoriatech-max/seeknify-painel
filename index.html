@@ -1359,6 +1359,10 @@
     var password = document.getElementById('cfgPassword').value;
     var pollSec = parseInt(document.getElementById('cfgPoll').value,10) || 45;
 
+    if(baseUrl && !/^https?:\/\//i.test(baseUrl)){
+      baseUrl = (location.protocol==="http:" ? "http://" : "https://") + baseUrl;
+    }
+
     if(!baseUrl){ showModalError("Informe a URL base da API."); return; }
     if(!email || !password){ showModalError("Informe e-mail e senha da conta de admin."); return; }
 
